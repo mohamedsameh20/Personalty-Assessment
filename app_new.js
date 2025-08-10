@@ -198,63 +198,19 @@
             try {
                 const response = await fetch('./questions.json');
                 this.questionData = await response.json();
-                
-                // Select a subset of questions (e.g., 2-3 per trait for a manageable assessment)
-                this.questions = this.selectBalancedQuestions(this.questionData.questions || [], 3);
+                this.questions = this.questionData.questions || [];
                 
                 // Update traits from JSON if available
                 if (this.questionData.traits) {
                     this.traits = this.questionData.traits;
                 }
                 
-                console.log(`Loaded ${this.questions.length} questions from ${this.questionData.questions?.length || 0} total`);
-                
-                // Update the UI with question count
-                this.updateQuestionCount();
+                console.log(`Loaded ${this.questions.length} questions`);
             } catch (error) {
                 console.error('Error loading questions:', error);
                 // Fallback to a basic question set if loading fails
                 this.questions = [];
-                this.updateQuestionCount();
             }
-        }
-        
-        updateQuestionCount() {
-            const questionCountElement = document.getElementById('questionCount');
-            if (questionCountElement) {
-                if (this.questions.length > 0) {
-                    questionCountElement.textContent = `${this.questions.length} questions`;
-                } else {
-                    questionCountElement.textContent = 'No questions available';
-                }
-            }
-        }
-        
-        selectBalancedQuestions(allQuestions, questionsPerTrait = 3) {
-            // Group questions by trait
-            const questionsByTrait = {};
-            
-            allQuestions.forEach(question => {
-                const trait = question.category.split(':')[0].trim();
-                if (!questionsByTrait[trait]) {
-                    questionsByTrait[trait] = [];
-                }
-                questionsByTrait[trait].push(question);
-            });
-            
-            // Select questions from each trait
-            const selectedQuestions = [];
-            
-            this.traits.forEach(trait => {
-                if (questionsByTrait[trait]) {
-                    // Shuffle and take the specified number
-                    const shuffled = [...questionsByTrait[trait]].sort(() => Math.random() - 0.5);
-                    selectedQuestions.push(...shuffled.slice(0, questionsPerTrait));
-                }
-            });
-            
-            // Shuffle the final selection
-            return selectedQuestions.sort(() => Math.random() - 0.5);
         }
         
         initializeScoring() {
@@ -298,19 +254,14 @@
 
             // Results actions
             const retakeBtn = document.getElementById('retakeAssessment');
-            const downloadBtn = document.getElementById('downloadResults');
-            const shareBtn = document.getElementById('shareResults');
+            const saveBtn = document.getElementById('saveResults');
             
             if (retakeBtn) {
                 retakeBtn.addEventListener('click', () => this.retakeAssessment());
             }
             
-            if (downloadBtn) {
-                downloadBtn.addEventListener('click', () => this.downloadResults());
-            }
-            
-            if (shareBtn) {
-                shareBtn.addEventListener('click', () => this.shareResults());
+            if (saveBtn) {
+                saveBtn.addEventListener('click', () => this.saveResults());
             }
         }
 
@@ -486,12 +437,12 @@
                 this.sumWeight[primaryTrait] += this.W_d;
             }
             
-            // Process correlations if they exist
+            // Process correlations
             if (choice.correlations) {
                 Object.entries(choice.correlations).forEach(([abbr, symbol]) => {
                     const fullTrait = this.traitAbbrToFull[abbr];
-                    if (fullTrait && this.traits.includes(fullTrait) && this.adjustmentMap[symbol] !== undefined) {
-                        const adjustment = this.adjustmentMap[symbol];
+                    if (fullTrait && this.traits.includes(fullTrait)) {
+                        const adjustment = this.adjustmentMap[symbol] || 0.0;
                         const deviation = score - 3; // 3 is neutral
                         const correlatedScore = 3 + (deviation * adjustment * 2);
                         
@@ -500,13 +451,6 @@
                     }
                 });
             }
-            
-            console.log(`Processed answer for ${primaryTrait}:`, {
-                score,
-                choice: choice.value,
-                primaryTrait,
-                correlations: choice.correlations
-            });
         }
 
         updateNavigationButtons() {
@@ -690,62 +634,23 @@
             this.showScreen('welcome');
         }
 
-        downloadResults() {
+        saveResults() {
             const results = {
                 scores: this.userScores,
                 characterMatches: this.characterMatches,
                 timestamp: new Date().toISOString()
             };
+            localStorage.setItem('personalityAssessmentResults', JSON.stringify(results));
             
-            const dataStr = JSON.stringify(results, null, 2);
-            const dataBlob = new Blob([dataStr], {type: 'application/json'});
-            const url = URL.createObjectURL(dataBlob);
-            
-            const link = document.createElement('a');
-            link.href = url;
-            link.download = `personality-assessment-${new Date().toISOString().split('T')[0]}.json`;
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
-            
-            URL.revokeObjectURL(url);
-        }
-        
-        shareResults() {
-            if (navigator.share) {
-                const topMatch = this.characterMatches[0];
-                const shareData = {
-                    title: 'My Personality Assessment Results',
-                    text: `I just completed a personality assessment and my top character match is ${topMatch?.name || 'Unknown'}! Take the assessment yourself.`,
-                    url: window.location.href
-                };
-                
-                navigator.share(shareData).catch(err => {
-                    console.log('Error sharing:', err);
-                    this.fallbackShare();
-                });
-            } else {
-                this.fallbackShare();
+            // Show feedback
+            const saveBtn = document.getElementById('saveResults');
+            if (saveBtn) {
+                const originalText = saveBtn.textContent;
+                saveBtn.textContent = 'Saved!';
+                setTimeout(() => {
+                    saveBtn.textContent = originalText;
+                }, 2000);
             }
-        }
-        
-        fallbackShare() {
-            const topMatch = this.characterMatches[0];
-            const text = `I just completed a personality assessment and my top character match is ${topMatch?.name || 'Unknown'}! Check it out: ${window.location.href}`;
-            
-            if (navigator.clipboard) {
-                navigator.clipboard.writeText(text).then(() => {
-                    alert('Results copied to clipboard!');
-                }).catch(() => {
-                    this.showShareDialog(text);
-                });
-            } else {
-                this.showShareDialog(text);
-            }
-        }
-        
-        showShareDialog(text) {
-            const dialog = prompt('Copy this text to share your results:', text);
         }
     };
 

@@ -1,0 +1,240 @@
+{
+    "traits": [
+        "Honesty-Humility",
+        "Emotionality",
+        "Extraversion",
+        "Agreeableness", 
+        "Conscientiousness",
+        "Openness",
+        "Dominance", 
+        "Vigilance",
+        "Self-Transcendence",
+        "Abstract Orientation",
+        "Value Orientation",
+        "Flexibility"
+    ],
+    "trait_descriptions": {
+        "Honesty-Humility": "Tendency toward sincerity, fairness, modesty, and avoidance of greed or exploitation",
+        "Emotionality": "Tendency to experience anxiety, fear, emotional dependence, and empathetic sentimentality",
+        "Extraversion": "Tendency toward social self-esteem, social boldness, sociability, and liveliness in expressions",
+        "Agreeableness": "Tendency toward forgiveness, gentleness, flexibility, patience, and interpersonal trust", 
+        "Conscientiousness": "Tendency toward organization, diligence, perfectionism, and prudent deliberation",
+        "Openness": "Tendency toward aesthetic appreciation, intellectual curiosity, creativity, and unconventionality",
+        "Dominance": "Tendency toward assertiveness, leadership, control-seeking, and interpersonal influence", 
+        "Vigilance": "Tendency toward cautiousness, skepticism, wariness of intentions, and threat detection",
+        "Self-Transcendence": "Tendency toward spirituality, sense of interconnectedness, altruism, and universal values",
+        "Abstract Orientation": "Tendency to prefer conceptual ideas, theoretical possibilities, and intangible concepts",
+        "Value Orientation": "Tendency to prioritize personal values, emotions, and moral principles in decision-making",
+        "Flexibility": "Tendency toward adaptability, spontaneity, comfort with ambiguity, and openness to change"
+    },
+    "questions": [
+        {
+            "id": "1",
+            "text": "You're asked to write a recommendation for a colleague who is not very competent. What do you do?",
+            "category": "Honesty-Humility: Sincerity",
+            "choices": [
+                {
+                    "text": "Write a glowing recommendation to help them get the job.",
+                    "value": "Low",
+                    "correlations": {
+                        "H-H": "-", "Em": "-m", "Ex": "+m", "Ag": "+m", 
+                        "Co": "-", "Op": "0", "Do": "-m", "Vi": "-m", 
+                        "ST": "-m", "C/A": "0", "L/V": "+m", "S/F": "0"
+                    }
+                },
+                {
+                    "text": "Write a neutral recommendation, avoiding specifics.",
+                    "value": "Low-Moderate",
+                    "correlations": {
+                        "H-H": "-m", "Em": "0", "Ex": "+m", "Ag": "0", 
+                        "Co": "-m", "Op": "0", "Do": "0", "Vi": "+m", 
+                        "ST": "0", "C/A": "0", "L/V": "0", "S/F": "0"
+                    }
+                },
+                {
+                    "text": "Write an honest but tactful recommendation, highlighting strengths.",
+                    "value": "Moderate",
+                    "correlations": {
+                        "H-H": "+m", "Em": "+m", "Ex": "+m", "Ag": "+", 
+                        "Co": "+m", "Op": "+m", "Do": "0", "Vi": "+m", 
+                        "ST": "+m", "C/A": "+m", "L/V": "+m", "S/F": "+m"
+                    }
+                },
+                {
+                    "text": "Decline to write the recommendation, citing lack of familiarity.",
+                    "value": "High",
+                    "correlations": {
+                        "H-H": "+", "Em": "0", "Ex": "-m", "Ag": "+m", 
+                        "Co": "-m", "Op": "0", "Do": "+m", "Vi": "+", 
+                        "ST": "0", "C/A": "+m", "L/V": "+", "S/F": "+m"
+                    }
+                },
+                {
+                    "text": "Write an honest recommendation, even if it might hurt their chances, because you value truthfulness.",
+                    "value": "Very High",
+                    "correlations": {
+                        "H-H": "+", "Em": "-m", "Ex": "-m", "Ag": "-m", 
+                        "Co": "+", "Op": "0", "Do": "+m", "Vi": "+m", 
+                        "ST": "+m", "C/A": "+m", "L/V": "+", "S/F": "+m"
+                    }
+                }
+            ]
+        },
+        {
+            "id": "2",
+            "text": "You receive news that might be bad for your future. How do you react?",
+            "category": "Emotionality: Anxiety",
+            "choices": [
+                {
+                    "text": "Stay completely calm and objective.",
+                    "value": "Low",
+                    "correlations": {
+                        "H-H": "0", "Em": "-", "Ex": "+m", "Ag": "0", 
+                        "Co": "+m", "Op": "0", "Do": "+m", "Vi": "-m", 
+                        "ST": "+m", "C/A": "0", "L/V": "0", "S/F": "+m"
+                    }
+                },
+                {
+                    "text": "Feel slightly uneasy but quickly regain composure.",
+                    "value": "Low-Moderate",
+                    "correlations": {
+                        "H-H": "0", "Em": "-m", "Ex": "0", "Ag": "0", 
+                        "Co": "+m", "Op": "0", "Do": "0", "Vi": "0", 
+                        "ST": "0", "C/A": "0", "L/V": "0", "S/F": "+m"
+                    }
+                },
+                {
+                    "text": "Experience moderate worry and seek reassurance.",
+                    "value": "Moderate",
+                    "correlations": {
+                        "H-H": "0", "Em": "+m", "Ex": "0", "Ag": "+m", 
+                        "Co": "0", "Op": "0", "Do": "-m", "Vi": "+m", 
+                        "ST": "0", "C/A": "0", "L/V": "+m", "S/F": "0"
+                    }
+                },
+                {
+                    "text": "Feel very anxious and have trouble focusing on anything else.",
+                    "value": "High",
+                    "correlations": {
+                        "H-H": "0", "Em": "+", "Ex": "-m", "Ag": "0", 
+                        "Co": "-m", "Op": "0", "Do": "-m", "Vi": "+", 
+                        "ST": "0", "C/A": "0", "L/V": "+", "S/F": "-m"
+                    }
+                },
+                {
+                    "text": "Become overwhelmed with worst-case scenarios and panic.",
+                    "value": "Very High",
+                    "correlations": {
+                        "H-H": "0", "Em": "+", "Ex": "-", "Ag": "0", 
+                        "Co": "-", "Op": "0", "Do": "-", "Vi": "+", 
+                        "ST": "0", "C/A": "0", "L/V": "+", "S/F": "-"
+                    }
+                }
+            ]
+        },
+        {
+            "id": "3",
+            "text": "At a party where you don't know many people, you:",
+            "category": "Extraversion: Sociability",
+            "choices": [
+                {
+                    "text": "Stay quiet in a corner, waiting for the event to end.",
+                    "value": "Low",
+                    "correlations": {
+                        "H-H": "0", "Em": "+m", "Ex": "-", "Ag": "0", 
+                        "Co": "0", "Op": "-m", "Do": "-", "Vi": "+m", 
+                        "ST": "0", "C/A": "0", "L/V": "0", "S/F": "-m"
+                    }
+                },
+                {
+                    "text": "Stick close to the few people you know well.",
+                    "value": "Low-Moderate",
+                    "correlations": {
+                        "H-H": "0", "Em": "+m", "Ex": "-m", "Ag": "+m", 
+                        "Co": "0", "Op": "0", "Do": "-m", "Vi": "+m", 
+                        "ST": "0", "C/A": "0", "L/V": "+m", "S/F": "0"
+                    }
+                },
+                {
+                    "text": "Observe others and join conversations when invited.",
+                    "value": "Moderate",
+                    "correlations": {
+                        "H-H": "0", "Em": "0", "Ex": "+m", "Ag": "+m", 
+                        "Co": "+m", "Op": "+m", "Do": "0", "Vi": "+m", 
+                        "ST": "0", "C/A": "0", "L/V": "0", "S/F": "+m"
+                    }
+                },
+                {
+                    "text": "Strike up conversations with several new people.",
+                    "value": "High",
+                    "correlations": {
+                        "H-H": "0", "Em": "0", "Ex": "+", "Ag": "+m", 
+                        "Co": "0", "Op": "+m", "Do": "+m", "Vi": "0", 
+                        "ST": "0", "C/A": "0", "L/V": "0", "S/F": "+m"
+                    }
+                },
+                {
+                    "text": "Work the room, introducing yourself to everyone and becoming the life of the party.",
+                    "value": "Very High",
+                    "correlations": {
+                        "H-H": "0", "Em": "0", "Ex": "+", "Ag": "+m", 
+                        "Co": "0", "Op": "+", "Do": "+", "Vi": "-m", 
+                        "ST": "0", "C/A": "0", "L/V": "0", "S/F": "+"
+                    }
+                }
+            ]
+        },
+        {
+            "id": "4",
+            "text": "A friend asks for feedback on something important to them. Your honest opinion might hurt their feelings. You:",
+            "category": "Agreeableness: Gentleness",
+            "choices": [
+                {
+                    "text": "Give them the brutal truth regardless of their feelings.",
+                    "value": "Low",
+                    "correlations": {
+                        "H-H": "+m", "Em": "0", "Ex": "0", "Ag": "-", 
+                        "Co": "0", "Op": "0", "Do": "+m", "Vi": "0", 
+                        "ST": "-m", "C/A": "0", "L/V": "0", "S/F": "0"
+                    }
+                },
+                {
+                    "text": "Point out the problems directly but try to be diplomatic.",
+                    "value": "Low-Moderate",
+                    "correlations": {
+                        "H-H": "+m", "Em": "0", "Ex": "0", "Ag": "-m", 
+                        "Co": "+m", "Op": "0", "Do": "0", "Vi": "0", 
+                        "ST": "0", "C/A": "0", "L/V": "+m", "S/F": "+m"
+                    }
+                },
+                {
+                    "text": "Balance honesty with kindness, mixing criticism with encouragement.",
+                    "value": "Moderate",
+                    "correlations": {
+                        "H-H": "+m", "Em": "+m", "Ex": "+m", "Ag": "+m", 
+                        "Co": "+m", "Op": "+m", "Do": "0", "Vi": "+m", 
+                        "ST": "+m", "C/A": "+m", "L/V": "+", "S/F": "+m"
+                    }
+                },
+                {
+                    "text": "Focus on positives while gently suggesting areas for improvement.",
+                    "value": "High",
+                    "correlations": {
+                        "H-H": "+m", "Em": "+m", "Ex": "+m", "Ag": "+", 
+                        "Co": "0", "Op": "+m", "Do": "0", "Vi": "0", 
+                        "ST": "+m", "C/A": "+m", "L/V": "+", "S/F": "+m"
+                    }
+                },
+                {
+                    "text": "Only offer encouragement and avoid any criticism to protect their feelings.",
+                    "value": "Very High",
+                    "correlations": {
+                        "H-H": "0", "Em": "+m", "Ex": "+m", "Ag": "+", 
+                        "Co": "-m", "Op": "0", "Do": "-m", "Vi": "-m", 
+                        "ST": "+m", "C/A": "0", "L/V": "+", "S/F": "+m"
+                    }
+                }
+            ]
+        }
+    ]
+}

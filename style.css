@@ -910,6 +910,30 @@ select.form-control {
   white-space: nowrap;
 }
 
+/* Alternative progress styles for new selectors */
+.progress {
+  flex: 1;
+  height: 8px;
+  background-color: var(--color-secondary);
+  border-radius: var(--radius-full);
+  overflow: hidden;
+}
+
+.progress__bar {
+  height: 100%;
+  background-color: var(--color-primary);
+  border-radius: var(--radius-full);
+  transition: width var(--duration-normal) var(--ease-standard);
+  width: 0%;
+}
+
+.progress__text {
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-secondary);
+  white-space: nowrap;
+}
+
 .assessment__content {
   margin-bottom: var(--space-32);
 }
@@ -960,6 +984,42 @@ select.form-control {
 }
 
 .choice-option:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: var(--focus-ring);
+}
+
+/* Alternative choice styles for new selectors */
+.choices {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-12);
+}
+
+.choice {
+  background-color: var(--color-bg-2);
+  border: 2px solid transparent;
+  border-radius: var(--radius-base);
+  padding: var(--space-16);
+  cursor: pointer;
+  transition: all var(--duration-fast) var(--ease-standard);
+  text-align: left;
+  font-size: var(--font-size-base);
+  color: var(--color-text);
+  width: 100%;
+}
+
+.choice:hover {
+  border-color: var(--color-primary);
+  background-color: var(--color-bg-3);
+}
+
+.choice--selected {
+  border-color: var(--color-primary);
+  background-color: var(--color-bg-1);
+}
+
+.choice:focus {
   outline: none;
   border-color: var(--color-primary);
   box-shadow: var(--focus-ring);
@@ -1047,6 +1107,131 @@ select.form-control {
   gap: var(--space-16);
   justify-content: center;
   flex-wrap: wrap;
+}
+
+/* Trait Display Styles */
+.traits {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-16);
+}
+
+.trait {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-card-border);
+  border-radius: var(--radius-base);
+  padding: var(--space-16);
+}
+
+.trait__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--space-8);
+}
+
+.trait__name {
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text);
+}
+
+.trait__score {
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-primary);
+}
+
+.trait__bar {
+  height: 8px;
+  background-color: var(--color-secondary);
+  border-radius: var(--radius-full);
+  overflow: hidden;
+}
+
+.trait__fill {
+  height: 100%;
+  background-color: var(--color-primary);
+  border-radius: var(--radius-full);
+  transition: width var(--duration-normal) var(--ease-standard);
+}
+
+/* Character Match Styles */
+.character-matches {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-20);
+}
+
+.character-match {
+  display: flex;
+  gap: var(--space-16);
+  padding: var(--space-20);
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-card-border);
+  border-radius: var(--radius-lg);
+}
+
+.character-match__rank {
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  background-color: var(--color-primary);
+  color: var(--color-white);
+  border-radius: var(--radius-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: var(--font-weight-bold);
+  font-size: var(--font-size-sm);
+}
+
+.character-match__content {
+  flex: 1;
+}
+
+.character-match__name {
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text);
+  margin-bottom: var(--space-4);
+}
+
+.character-match__show {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+  margin-bottom: var(--space-8);
+}
+
+.character-match__description {
+  color: var(--color-text-secondary);
+  margin-bottom: var(--space-12);
+  line-height: var(--line-height-relaxed);
+}
+
+.character-match__similarity {
+  display: flex;
+  align-items: center;
+  gap: var(--space-12);
+}
+
+.character-match__percentage {
+  font-weight: var(--font-weight-medium);
+  color: var(--color-primary);
+  white-space: nowrap;
+}
+
+.character-match__bar {
+  flex: 1;
+  height: 6px;
+  background-color: var(--color-secondary);
+  border-radius: var(--radius-full);
+  overflow: hidden;
+}
+
+.character-match__fill {
+  height: 100%;
+  background-color: var(--color-primary);
+  border-radius: var(--radius-full);
+  transition: width var(--duration-normal) var(--ease-standard);
 }
 
 /* Card Component Extensions */

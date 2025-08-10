@@ -66,7 +66,7 @@
                         </div>
 
                         <div class="welcome__info">
-                            <p class="text--secondary">Takes approximately 15-20 minutes • All data stays on your device</p>
+                            <p class="text--secondary">Takes approximately 15-20 minutes • <span id="questionCount">Loading questions...</span> • All data stays on your device</p>
                         </div>
                     </div>
                 </div>
@@ -78,17 +78,17 @@
                     <div class="assessment">
                         <div class="assessment__header">
                             <div class="progress-container">
-                                <div class="progress-bar">
-                                    <div id="progressFill" class="progress-bar__fill"></div>
+                                <div class="progress">
+                                    <div class="progress__bar"></div>
                                 </div>
-                                <span id="progressText" class="progress-text">Question 1 of 24</span>
+                                <span class="progress__text">Question 1 of 24</span>
                             </div>
                         </div>
 
                         <div class="assessment__content">
-                            <div id="questionCard" class="question-card">
-                                <h3 id="questionText" class="question-card__text"></h3>
-                                <div id="questionChoices" class="question-choices"></div>
+                            <div class="question-card">
+                                <h3 class="assessment__question"></h3>
+                                <div class="choices"></div>
                             </div>
                         </div>
 
@@ -136,8 +136,8 @@
                             <!-- Top Traits -->
                             <div class="card">
                                 <div class="card__body">
-                                    <h3 class="card__title">Your Strongest Traits</h3>
-                                    <div id="topTraits" class="traits-list"></div>
+                                    <h3 class="card__title">Your Trait Scores</h3>
+                                    <div class="traits"></div>
                                 </div>
                             </div>
 
@@ -145,7 +145,7 @@
                             <div class="card">
                                 <div class="card__body">
                                     <h3 class="card__title">Your Character Matches</h3>
-                                    <div id="characterMatches" class="character-matches"></div>
+                                    <div class="character-matches"></div>
                                 </div>
                             </div>
 
