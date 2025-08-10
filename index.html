@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personality Assessment - Discover Your Character Match</title>
+    <meta name="description" content="Take a comprehensive personality assessment based on the 12-trait model and discover which character from Phineas and Ferb matches your personality best.">
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧠</text></svg>">
+</head>
+<body>
+    <div id="app" class="app-container">
+        <!-- Header -->
+        <header class="header">
+            <div class="container">
+                <div class="header__content">
+                    <h1 class="header__title">Personality Assessment</h1>
+                    <div class="header__controls">
+                        <button id="themeToggle" class="btn btn--outline btn--sm" aria-label="Toggle dark mode">
+                            <span class="theme-icon">🌙</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main">
+            <!-- Welcome Screen -->
+            <section id="welcome" class="screen screen--active">
+                <div class="container">
+                    <div class="welcome">
+                        <div class="welcome__hero">
+                            <h2 class="welcome__title">Discover Your Personality Profile</h2>
+                            <p class="welcome__subtitle">Take our comprehensive assessment based on the 12-trait personality model and find out which character from Phineas and Ferb matches your unique personality!</p>
+                        </div>
+                        
+                        <div class="welcome__features">
+                            <div class="feature-grid">
+                                <div class="feature">
+                                    <div class="feature__icon">📊</div>
+                                    <h3 class="feature__title">12 Personality Traits</h3>
+                                    <p class="feature__description">Comprehensive analysis across Honesty-Humility, Emotionality, Extraversion, and 9 other key traits</p>
+                                </div>
+                                <div class="feature">
+                                    <div class="feature__icon">🎭</div>
+                                    <h3 class="feature__title">Character Matching</h3>
+                                    <p class="feature__description">Compare your profile with beloved characters from Phineas and Ferb</p>
+                                </div>
+                                <div class="feature">
+                                    <div class="feature__icon">📈</div>
+                                    <h3 class="feature__title">Visual Insights</h3>
+                                    <p class="feature__description">Interactive charts and detailed personality breakdowns</p>
+                                </div>
+                                <div class="feature">
+                                    <div class="feature__icon">💾</div>
+                                    <h3 class="feature__title">Save Progress</h3>
+                                    <p class="feature__description">Your assessment progress is saved locally - resume anytime</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="welcome__actions">
+                            <button id="startAssessment" class="btn btn--primary btn--lg">Start Assessment</button>
+                            <button id="resumeAssessment" class="btn btn--outline btn--lg hidden">Resume Assessment</button>
+                        </div>
+
+                        <div class="welcome__info">
+                            <p class="text--secondary">Takes approximately 15-20 minutes • All data stays on your device</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Assessment Screen -->
+            <section id="assessment" class="screen">
+                <div class="container">
+                    <div class="assessment">
+                        <div class="assessment__header">
+                            <div class="progress-container">
+                                <div class="progress-bar">
+                                    <div id="progressFill" class="progress-bar__fill"></div>
+                                </div>
+                                <span id="progressText" class="progress-text">Question 1 of 24</span>
+                            </div>
+                        </div>
+
+                        <div class="assessment__content">
+                            <div id="questionCard" class="question-card">
+                                <h3 id="questionText" class="question-card__text"></h3>
+                                <div id="questionChoices" class="question-choices"></div>
+                            </div>
+                        </div>
+
+                        <div class="assessment__actions">
+                            <button id="prevQuestion" class="btn btn--outline" disabled>Previous</button>
+                            <button id="nextQuestion" class="btn btn--primary" disabled>Next</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Loading Screen -->
+            <section id="loading" class="screen">
+                <div class="container">
+                    <div class="loading">
+                        <div class="loading__animation">
+                            <div class="loading__spinner"></div>
+                        </div>
+                        <h3 class="loading__title">Analyzing Your Personality...</h3>
+                        <p class="loading__text">Calculating trait scores and finding your character matches</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Results Screen -->
+            <section id="results" class="screen">
+                <div class="container">
+                    <div class="results">
+                        <div class="results__header">
+                            <h2 class="results__title">Your Personality Profile</h2>
+                            <p class="results__subtitle">Here's what makes you unique</p>
+                        </div>
+
+                        <div class="results__content">
+                            <!-- Personality Radar Chart -->
+                            <div class="card">
+                                <div class="card__body">
+                                    <h3 class="card__title">Your Personality Traits</h3>
+                                    <div class="chart-container" style="position: relative; height: 400px;">
+                                        <canvas id="personalityChart"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Top Traits -->
+                            <div class="card">
+                                <div class="card__body">
+                                    <h3 class="card__title">Your Strongest Traits</h3>
+                                    <div id="topTraits" class="traits-list"></div>
+                                </div>
+                            </div>
+
+                            <!-- Character Matches -->
+                            <div class="card">
+                                <div class="card__body">
+                                    <h3 class="card__title">Your Character Matches</h3>
+                                    <div id="characterMatches" class="character-matches"></div>
+                                </div>
+                            </div>
+
+                            <!-- Detailed Character Comparison -->
+                            <div class="card">
+                                <div class="card__body">
+                                    <h3 class="card__title">Best Match: <span id="bestMatchName"></span></h3>
+                                    <div id="bestMatchDetails" class="character-details">
+                                        <div class="character-details__info">
+                                            <p id="bestMatchDescription" class="character-details__description"></p>
+                                            <p id="bestMatchAnalysis" class="character-details__analysis"></p>
+                                        </div>
+                                        <div class="chart-container" style="position: relative; height: 300px;">
+                                            <canvas id="comparisonChart"></canvas>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="results__actions">
+                            <button id="downloadResults" class="btn btn--primary">Download Results</button>
+                            <button id="retakeAssessment" class="btn btn--outline">Retake Assessment</button>
+                            <button id="shareResults" class="btn btn--outline">Share Results</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="container">
+                <p class="footer__text">All assessments are processed locally on your device. No data is sent to servers.</p>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
